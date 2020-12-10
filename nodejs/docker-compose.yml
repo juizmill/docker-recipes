@@ -1,0 +1,36 @@
+version: "3"
+
+services:
+  mongodb:
+    container_name: "mongodb"
+    image: mongo:4
+    ports:
+      - 27017:27017
+    networks:
+      - node-network
+
+  nodejs:
+    container_name: "nodejs"
+    build: .
+    command: npm run dev:watch
+    ports:
+      - 4000:4000
+    environment: 
+      MONGO_URL: mongodb
+      PORT: 4000
+    volumes: 
+      - ./:/src/
+      - nodemodules:/src/node_modules
+    links: 
+      - mongodb
+    depends_on: 
+      - mongodb
+    networks:
+      - node-network
+
+volumes: 
+    nodemodules: {}
+
+networks:
+  node-network:
+    driver: bridge

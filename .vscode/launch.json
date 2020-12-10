@@ -10,19 +10,11 @@
       "request": "launch",
       "port": 9003,
       "pathMappings": {
-        "/var/www/html": "${workspaceRoot}",
-      }
-    },
-    {
-      "name": "Launch currently open script",
-      "type": "php",
-      "request": "launch",
-      "program": "${file}",
-      "cwd": "${fileDirname}",
-      "port": 9003,
-      "pathMappings": {
-        "/var/www/html": "${workspaceRoot}",
-      }
+        "/var/www/html": "${workspaceRoot}/php",
+      },
+      "ignore": [
+        "**/vendor/**/*.php"
+      ]
     }
   ]
 }
